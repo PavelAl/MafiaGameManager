@@ -1,10 +1,11 @@
 import { Stack } from '@chakra-ui/react';
 import { FC } from 'react';
 
+import { RemovableListOfNames } from '../../ListsOfPlayers';
+
 import { initialPlayersNames } from '~/Players/data';
 
 import { AddPlayerInput } from './AddPlayerInput';
-import { ListOfNames } from './ListOfNames';
 
 export type PlayersListViewProps = {
   players?: string[];
@@ -19,7 +20,7 @@ export const PlayersListView: FC<PlayersListViewProps> = props => {
     <Stack spacing="4">
       <AddPlayerInput onAddPlayer={onAddPlayer} />
 
-      <ListOfNames players={players} onDeletePlayer={onDeletePlayer} />
+      <RemovableListOfNames players={players} onDeletePlayer={onDeletePlayer} />
     </Stack>
   );
 };
