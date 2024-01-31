@@ -3,7 +3,7 @@ import { Role, RoleDescription } from '~/GameSetup/types';
 export const rolesDescriptions: Record<Role, RoleDescription> = {
   citizen: {
     role: 'citizen',
-    name: 'Мирный ',
+    name: 'Мирный',
     team: 'Мирные',
     action: 'Ночью не просыпается',
     specials: []
