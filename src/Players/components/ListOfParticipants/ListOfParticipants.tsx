@@ -9,7 +9,7 @@ export const ListOfParticipants: FC<ListOfParticipantsProps> = props => {
   const { players = [], participants = [], onParticipantRemoved, onPlayerAdded } = props;
 
   return (
-    <HStack spacing={4} divider={<StackDivider />} alignItems={'flex-start'}>
+    <HStack height={'100%'} spacing={4} divider={<StackDivider />} alignItems={'flex-start'}>
       <AddibleListOfNames label="Игроки" players={players} onAddPlayer={onPlayerAdded} />
 
       <RemovableListOfNames

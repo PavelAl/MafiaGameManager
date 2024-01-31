@@ -5,10 +5,9 @@ export const ListOfPlayersStack: FC<{ children: ReactNode }> = props => {
   const { children } = props;
 
   const listMinWidth = 100;
-  // const listMaxWidth = 150;
 
   return (
-    <Stack spacing="1" minWidth={listMinWidth} flex={1}>
+    <Stack spacing="0" minWidth={listMinWidth} flex={1} overflow={'auto'} height={'100%'}>
       {children}
     </Stack>
   );

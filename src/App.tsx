@@ -2,6 +2,7 @@ import { Box } from '@chakra-ui/react';
 import { Routes } from 'react-router-dom';
 
 // import { MainPage, CardsPage } from './App/pages';
+import './App.css';
 
 export function App() {
   return (

@@ -11,11 +11,11 @@ type Props = {
 };
 
 export const EdiblePlayerRecord: FC<Props> = props => {
-  const { name, button: button } = props;
+  const { name, button } = props;
 
   return (
     <HStack alignItems={'center'} justifyContent={'space-between'} spacing={3}>
-      <Text p="2" fontSize="sm">
+      <Text p="2" fontSize="sm" wordBreak={'break-word'}>
         {name}
       </Text>
 

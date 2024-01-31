@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react';
 
 import { ListOfParticipants } from '../ListOfParticipants';
@@ -21,11 +22,13 @@ export const ListOfParticipantsStory: FC<ListOfParticipantsProps> = props => {
   };
 
   return (
-    <ListOfParticipants
-      participants={participants}
-      players={players}
-      onPlayerAdded={onPlayerAdded}
-      onParticipantRemoved={onParticipantRemoved}
-    />
+    <div style={{ height: '95vh' }}>
+      <ListOfParticipants
+        participants={participants}
+        players={players}
+        onPlayerAdded={onPlayerAdded}
+        onParticipantRemoved={onParticipantRemoved}
+      />
+    </div>
   );
 };
