@@ -6,14 +6,18 @@ import { AddibleListOfNames, RemovableListOfNames } from '../ListsOfPlayers';
 import { ListOfParticipantsProps } from './ListOfParticipants.types';
 
 export const ListOfParticipants: FC<ListOfParticipantsProps> = props => {
-  const { players = [], participants = [], onParticipantRemoved, onPlayerAdded } = props;
+  const { players = [], participants = [], onParticipantRemoved, onParticipantAdded } = props;
 
   return (
     <HStack height={'100%'} spacing={4} divider={<StackDivider />} alignItems={'flex-start'}>
-      <AddibleListOfNames label="Игроки" players={players} onAddPlayer={onPlayerAdded} />
+      <AddibleListOfNames
+        label="Игроки"
+        players={players.filter(player => !participants.includes(player))}
+        onAddPlayer={onParticipantAdded}
+      />
 
       <RemovableListOfNames
-        label="Участники"
+        label={`Участники(${participants.length})`}
         players={participants}
         onDeletePlayer={onParticipantRemoved}
       />

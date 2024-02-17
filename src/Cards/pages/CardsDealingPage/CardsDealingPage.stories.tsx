@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { CardsDealingPage, CardsDealingPageProps } from './CardsDealingPage';
 
 export default {
-  title: 'CardsDealingPage',
+  title: 'Cards/CardsDealingPage',
   component: CardsDealingPage,
   args: {
     gameSettings: {

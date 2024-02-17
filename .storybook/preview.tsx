@@ -2,6 +2,8 @@ import { ChakraProvider } from '@chakra-ui/react';
 import type { Preview } from '@storybook/react';
 import React from 'react';
 import '../src/App.css';
+import { BrowserRouter } from 'react-router-dom';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const preview: Preview = {
   parameters: {
@@ -18,9 +20,11 @@ const preview: Preview = {
   },
   decorators: [
     Story => (
-      <ChakraProvider>
-        <Story />
-      </ChakraProvider>
+      <BrowserRouter>
+        <ChakraProvider>
+          <Story />
+        </ChakraProvider>
+      </BrowserRouter>
     )
   ]
 };

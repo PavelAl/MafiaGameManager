@@ -6,7 +6,7 @@ import { RoleCardProps } from './RoleCard.types';
 type Args = RoleCardProps;
 
 export default {
-  title: 'RoleCard',
+  title: 'Cards/RoleCard',
   component: RoleCard,
   args: {
     role: 'citizen'

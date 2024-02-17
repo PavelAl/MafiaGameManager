@@ -1,10 +1,7 @@
-import { Role } from '~/GameSetup/types';
-
-export type RolesRegistrationResult = Partial<Record<Role, string>>;
+import { RoleRegistrationOption } from '../../types';
 
 export type RoleRegistrationProps = {
-  roles: Role[];
+  options: RoleRegistrationOption[];
   players: string[];
-  result: RolesRegistrationResult;
-  onRoleSelected: (record: { role: Role; player: string }) => void;
+  onOptionPlayerSelected: (updatedOption: RoleRegistrationOption) => void;
 };

@@ -1,63 +1,37 @@
-import { Stack } from '@chakra-ui/react';
+import { Stack, Text } from '@chakra-ui/react';
 import { FC } from 'react';
 
-import { MobileNumberInput, SwitchField } from '~/Common';
+import { MobileNumberInput } from '~/Common';
 
+import { RoleSwitchField } from './components';
+import { GameSetupContext } from './GameSetup.context';
 import { GameSetupProps } from './GameSetup.types';
 
 export const GameSetup: FC<GameSetupProps> = props => {
-  const { settings, onChange } = props;
+  const { settings = { players: 0, mafia: 0 }, onChange } = props;
 
   return (
-    <Stack gap={6} alignItems="center">
-      <MobileNumberInput
-        label={'Players'}
-        value={settings.players}
-        min={0}
-        onChange={value => onChange({ ...settings, players: value })}
-      />
+    <GameSetupContext.Provider value={props}>
+      <Stack gap={6} alignItems="center">
+        <Text fontSize="18" fontWeight={500}>{`Всего участников: ${settings.players}`}</Text>
 
-      <MobileNumberInput
-        label={'Mafia'}
-        value={settings.mafia}
-        min={0}
-        onChange={value => onChange({ ...settings, mafia: value })}
-      />
+        <MobileNumberInput
+          label={'Mafia'}
+          value={settings.mafia}
+          min={0}
+          onChange={value => onChange?.({ ...settings, mafia: value })}
+        />
 
-      <SwitchField
-        id={'sheriff'}
-        label={'Sheriff'}
-        checked={settings.sheriff}
-        onChange={value => onChange({ ...settings, sheriff: value })}
-      />
+        <RoleSwitchField role={'sheriff'} />
 
-      <SwitchField
-        id={'boss'}
-        label={'Boss'}
-        checked={settings.boss}
-        onChange={value => onChange({ ...settings, boss: value })}
-      />
+        <RoleSwitchField role={'boss'} />
 
-      <SwitchField
-        id={'maniac'}
-        label={'Maniac'}
-        checked={settings.maniac}
-        onChange={value => onChange({ ...settings, maniac: value })}
-      />
+        <RoleSwitchField role={'maniac'} />
 
-      <SwitchField
-        id={'doctor'}
-        label={'Doctor'}
-        checked={settings.doctor}
-        onChange={value => onChange({ ...settings, doctor: value })}
-      />
+        <RoleSwitchField role={'doctor'} />
 
-      <SwitchField
-        id={'putana'}
-        label={'Putana'}
-        checked={settings.putana}
-        onChange={value => onChange({ ...settings, putana: value })}
-      />
-    </Stack>
+        <RoleSwitchField role={'putana'} />
+      </Stack>
+    </GameSetupContext.Provider>
   );
 };

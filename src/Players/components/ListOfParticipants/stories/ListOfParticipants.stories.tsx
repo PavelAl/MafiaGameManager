@@ -4,12 +4,12 @@ import { ListOfParticipantsProps } from '../ListOfParticipants.types';
 
 import { initialPlayersNames } from '~/Players/data';
 
-import { ListOfParticipantsStory } from './ListOfParticipants';
+import { ListOfParticipantsStory } from './ListOfParticipantsStory';
 
 type Args = ListOfParticipantsProps;
 
 export default {
-  title: 'ListOfParticipants',
+  title: 'Players/ListOfParticipants',
   component: ListOfParticipantsStory,
   args: {
     players: initialPlayersNames
