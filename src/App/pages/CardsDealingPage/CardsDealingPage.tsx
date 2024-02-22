@@ -1,15 +1,16 @@
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useAppContext } from '../../context';
+
 import { appPaths } from '~/App/appPaths';
-import { useAppContext } from '~/AppContext';
-import { CardsDealingPage } from '~/Cards/pages';
+import { CardsDealingModule } from '~/Cards/modules';
 import { PlayersGetReadyModule } from '~/Game/modules';
 import { GameSettings } from '~/GameSetup/types';
 
 type PageStage = 'prepare' | 'dealing';
 
-export const AppCardsDealingPage: FC = () => {
+export const CardsDealingPage: FC = () => {
   const { settings } = useAppContext();
 
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ export const AppCardsDealingPage: FC = () => {
   switch (stage) {
     case 'dealing':
       return (
-        <CardsDealingPage
+        <CardsDealingModule
           gameSettings={settings as GameSettings}
           onFinish={() => navigate(appPaths.rolesRegistration)}
         />

@@ -1,8 +1,9 @@
 import { Stack } from '@chakra-ui/react';
 import { FC } from 'react';
 
+import { useAppContext } from '../../context';
+
 import { appPaths } from '~/App/appPaths';
-import { useAppContext } from '~/AppContext';
 import { LinkButton } from '~/Common';
 
 export const MainMenu: FC = () => {

@@ -1,4 +1,4 @@
-import { cardsPool } from '../consts';
+import { cardsPool } from '../data';
 import { Card, CardsPool } from '../types';
 
 import { shuffleArray } from '~/Common/tools';
@@ -84,9 +84,9 @@ export class GameDeckGenerator {
   }
 
   private fillRestWithCitizens() {
-    const requredCitizens = this.gameSettings.players - this.deck.length;
+    const requiredCitizens = this.gameSettings.players - this.deck.length;
 
-    for (let i = 0; i < requredCitizens; i++) {
+    for (let i = 0; i < requiredCitizens; i++) {
       this.addRoleToDeck('citizen');
     }
   }

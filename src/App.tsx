@@ -2,21 +2,20 @@ import { Box } from '@chakra-ui/react';
 import { Route, Routes } from 'react-router-dom';
 
 import { appPaths } from './App/appPaths';
+import { AppContext, useCreateAppContextValue } from './App/context';
 import {
   GameSettings,
   MainMenu,
   ParticipantsPage,
   PlayersPage,
-  AppCardsDealingPage,
+  CardsDealingPage,
   RolesRegistrationPage
 } from './App/pages';
-import { AppContext } from './AppContext';
-import { useCreatePlayersContextValue } from './useCreatePlayersContextValue';
 
 import './App.css';
 
 export function App() {
-  const contextValue = useCreatePlayersContextValue();
+  const contextValue = useCreateAppContextValue();
 
   return (
     <Box padding={'20px 0'} maxWidth={430} margin={'auto'}>
@@ -33,7 +32,7 @@ export function App() {
 
           <Route path={appPaths.settings} element={<GameSettings backUrl={appPaths.root} />} />
 
-          <Route path={appPaths.cardsDealing} element={<AppCardsDealingPage />} />
+          <Route path={appPaths.cardsDealing} element={<CardsDealingPage />} />
 
           <Route path={appPaths.rolesRegistration} element={<RolesRegistrationPage />} />
         </Routes>

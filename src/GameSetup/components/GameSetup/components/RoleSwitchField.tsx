@@ -2,12 +2,12 @@ import { FC, useContext } from 'react';
 
 import { GameSetupContext } from '../GameSetup.context';
 
-import { cardsPool } from '~/Cards/consts';
+import { cardsPool } from '~/Cards/data';
 import { SwitchField } from '~/Common/components';
 import { GameSettings, Role } from '~/GameSetup/types';
 
 export const RoleSwitchField: FC<{ role: Role }> = ({ role }) => {
-  const { settings, onChange } = useContext(GameSetupContext);
+  const { settings = { players: 0, mafia: 0 }, onChange } = useContext(GameSetupContext);
 
   const card = cardsPool[role];
 
@@ -16,7 +16,7 @@ export const RoleSwitchField: FC<{ role: Role }> = ({ role }) => {
       id={role}
       label={card.name}
       checked={Boolean(settings[role as keyof GameSettings])}
-      onChange={value => onChange({ ...settings, [role]: value })}
+      onChange={value => onChange?.({ ...settings, [role]: value })}
     />
   );
 };

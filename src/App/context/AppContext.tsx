@@ -1,8 +1,6 @@
 import { createContext, useContext } from 'react';
 
-import { PlayersContextValue } from './useCreatePlayersContextValue';
-
-type AppContextValue = PlayersContextValue;
+import { AppContextValue } from './AppContextValue';
 
 export const AppContext = createContext<AppContextValue>({});
 

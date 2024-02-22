@@ -1,7 +1,8 @@
 import { Stack } from '@chakra-ui/react';
 import { FC } from 'react';
 
-import { useAppContext } from '~/AppContext';
+import { useAppContext } from '../../context';
+
 import { LinkButton } from '~/Common';
 import { ListOfParticipants } from '~/Players/components';
 
