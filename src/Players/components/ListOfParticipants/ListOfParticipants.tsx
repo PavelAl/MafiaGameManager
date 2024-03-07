@@ -1,7 +1,6 @@
-import { HStack, StackDivider } from '@chakra-ui/react';
 import { FC } from 'react';
 
-import { AddibleListOfNames, RemovableListOfNames } from '../ListsOfPlayers';
+import { DualList } from '~/Common/components';
 
 import { ListOfParticipantsProps } from './ListOfParticipants.types';
 
@@ -9,18 +8,13 @@ export const ListOfParticipants: FC<ListOfParticipantsProps> = props => {
   const { players = [], participants = [], onParticipantRemoved, onParticipantAdded } = props;
 
   return (
-    <HStack height={'100%'} spacing={4} divider={<StackDivider />} alignItems={'flex-start'}>
-      <AddibleListOfNames
-        label="Игроки"
-        players={players.filter(player => !participants.includes(player))}
-        onAddPlayer={onParticipantAdded}
-      />
-
-      <RemovableListOfNames
-        label={`Участники(${participants.length})`}
-        players={participants}
-        onDeletePlayer={onParticipantRemoved}
-      />
-    </HStack>
+    <DualList
+      leftLabel={'Игроки'}
+      rightLabel={`Участники(${participants.length})`}
+      left={players.filter(player => !participants.includes(player))}
+      right={participants}
+      onAdded={onParticipantAdded}
+      onRemoved={onParticipantRemoved}
+    />
   );
 };

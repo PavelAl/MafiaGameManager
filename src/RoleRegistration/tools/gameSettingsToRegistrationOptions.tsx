@@ -12,13 +12,12 @@ export function gameSettingsToRegistrationOptions(
 
   if (putana) result.push({ key: `putana`, label: 'Путана', player: '', role: 'putana' });
 
-  for (let i = 0; i < mafia; i++) {
-    result.push({
-      key: `mafia-${i}`,
-      label: 'Мафия',
-      player: '',
-      role: 'mafia'
-    });
+  if (mafia === 1) {
+    result.push({ key: `mafia`, label: `Мафия`, player: '', role: 'mafia' });
+  } else {
+    for (let i = 0; i < mafia; i++) {
+      result.push({ key: `mafia-${i}`, label: `Мафия ${i + 1}`, player: '', role: 'mafia' });
+    }
   }
 
   if (boss) result.push({ key: `boss`, label: 'Босс', player: '', role: 'boss' });

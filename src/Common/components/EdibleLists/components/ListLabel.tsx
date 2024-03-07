@@ -1,7 +1,7 @@
 import { Text } from '@chakra-ui/react';
 import { FC } from 'react';
 
-export const ListOfNamesLabel: FC<{ label: string }> = props => {
+export const ListLabel: FC<{ label: string }> = props => {
   const { label } = props;
 
   return (

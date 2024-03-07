@@ -2,24 +2,17 @@ import { useEffect, useState } from 'react';
 
 import { GameSettings } from '~/GameSetup/types';
 
-export const useSettings = (participants: string[]) => {
-  const [settings, setSettings] = useState<GameSettings>({
-    players: 8,
-    mafia: 2,
-    sheriff: true,
-    boss: true,
-    maniac: true
-  });
+export const useSettings = (participants: string[], initialSettings?: GameSettings) => {
+  const [settings, setSettings] = useState<GameSettings>(
+    initialSettings ?? { players: participants.length, mafia: 0 }
+  );
 
   useEffect(
     () =>
-      setSettings({
-        players: participants.length,
-        mafia: 2,
-        sheriff: true,
-        boss: true,
-        maniac: true
-      }),
+      setSettings(prev => ({
+        ...prev,
+        players: participants.length
+      })),
     [participants]
   );
 

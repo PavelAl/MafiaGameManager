@@ -1,21 +1,21 @@
 import { Remove } from '@mui/icons-material';
 import { FC } from 'react';
 
-import { EdiblePlayerRecord } from './EdiblePlayerRecord';
+import { EdibleRecord } from './EdibleRecord';
 
 type Props = {
   name: string;
   onDelete?: () => void;
 };
 
-export const RemovablePlayerRecord: FC<Props> = props => {
+export const RemovableRecord: FC<Props> = props => {
   const { name, onDelete } = props;
 
   return (
-    <EdiblePlayerRecord
+    <EdibleRecord
       name={name}
       button={{
-        label: 'Delete player',
+        label: 'Delete',
         icon: <Remove />,
         onClick: onDelete
       }}

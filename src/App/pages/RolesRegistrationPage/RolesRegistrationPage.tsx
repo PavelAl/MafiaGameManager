@@ -1,38 +1,24 @@
 import { Stack } from '@chakra-ui/react';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 import { useAppContext } from '../../context';
 
 import { appPaths } from '~/App/appPaths';
 import { LinkButton } from '~/Common';
-import { RoleRegistration } from '~/RoleRegistration/components/RoleRegistration';
-import { gameSettingsToRegistrationOptions } from '~/RoleRegistration/tools';
-import { RoleRegistrationOption } from '~/RoleRegistration/types';
+import { RoleRegistration } from '~/RoleRegistration/components';
 
 export const RolesRegistrationPage: FC = () => {
-  const { settings, participants = [] } = useAppContext();
-
-  const [rolesRegistration, setRolesRegistration] = useState<RoleRegistrationOption[]>(
-    gameSettingsToRegistrationOptions(settings)
-  );
-
-  const updateOption = (updatedOption: RoleRegistrationOption): void => {
-    setRolesRegistration(prevState =>
-      prevState.map(option => {
-        return option.key === updatedOption.key ? updatedOption : option;
-      })
-    );
-  };
+  const { participants = [], rolesRegistration = [], updateRoleRegistration } = useAppContext();
 
   return (
     <Stack spacing={6}>
       <RoleRegistration
         options={rolesRegistration}
         players={participants}
-        onOptionPlayerSelected={updateOption}
+        onOptionPlayerSelected={updateRoleRegistration}
       />
 
-      <LinkButton to={appPaths.day} label="Начать игру" />
+      <LinkButton to={appPaths.game} label="Начать игру" />
     </Stack>
   );
 };

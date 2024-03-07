@@ -10,7 +10,7 @@ type Props = {
   };
 };
 
-export const EdiblePlayerRecord: FC<Props> = props => {
+export const EdibleRecord: FC<Props> = props => {
   const { name, button } = props;
 
   return (

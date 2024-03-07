@@ -9,7 +9,8 @@ import {
   ParticipantsPage,
   PlayersPage,
   CardsDealingPage,
-  RolesRegistrationPage
+  RolesRegistrationPage,
+  GamePage
 } from './App/pages';
 
 import './App.css';
@@ -35,6 +36,8 @@ export function App() {
           <Route path={appPaths.cardsDealing} element={<CardsDealingPage />} />
 
           <Route path={appPaths.rolesRegistration} element={<RolesRegistrationPage />} />
+
+          <Route path={appPaths.game} element={<GamePage />} />
         </Routes>
       </AppContext.Provider>
     </Box>

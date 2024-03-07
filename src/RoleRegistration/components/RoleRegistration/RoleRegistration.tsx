@@ -5,7 +5,7 @@ import { RoleRegistrationInput } from '../RoleRegistrationInput';
 
 import { RoleRegistrationProps } from './RoleRegistration.types';
 
-const RoleRegistrationModule: FC<RoleRegistrationProps> = props => {
+export const RoleRegistration: FC<RoleRegistrationProps> = props => {
   const { options, players, onOptionPlayerSelected } = props;
 
   const selectedPlayers = options.map(({ player }) => player);
@@ -22,12 +22,12 @@ const RoleRegistrationModule: FC<RoleRegistrationProps> = props => {
             label={label}
             players={[player, ...availablePlayers]}
             selectedPlayer={player}
-            onPlayerSelected={newPlayer => onOptionPlayerSelected({ ...option, player: newPlayer })}
+            onPlayerSelected={newPlayer =>
+              onOptionPlayerSelected?.({ ...option, player: newPlayer })
+            }
           />
         );
       })}
     </Stack>
   );
 };
-
-export { RoleRegistrationModule as RoleRegistration };
