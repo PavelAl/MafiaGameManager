@@ -3,7 +3,8 @@ export const appPaths = {
   players: '/players',
   participants: '/participants',
   settings: '/settings',
-  game: '/game',
+  rolesRegistration: '/rolesRegistration',
   cardsDealing: '/cardsDealing',
-  rolesRegistration: '/rolesRegistration'
+  game: '/game',
+  results: '/results'
 };

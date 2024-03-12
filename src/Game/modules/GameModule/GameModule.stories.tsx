@@ -28,7 +28,7 @@ const GameModuleStory: FC = () => {
 };
 
 export default {
-  title: 'GameModule',
+  title: 'Game/Modules/GameModule',
   component: GameModuleStory
 } as Meta<Args>;
 

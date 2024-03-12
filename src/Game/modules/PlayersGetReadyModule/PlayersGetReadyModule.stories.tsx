@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { PlayersGetReadyModule, PlayersGetReadyModuleProps } from './PlayersGetReadyModule';
 
 export default {
-  title: 'GameSetup/PlayersGetReadyModule',
+  title: 'Game/Modules/PlayersGetReadyModule',
   component: PlayersGetReadyModule,
   argTypes: {
     onStart: { action: 'start' }

@@ -9,7 +9,7 @@ export const GameModule: FC<GameModuleProps> = props => {
   const { mode } = props;
 
   return (
-    <Stack spacing={10} align={'flex-end'}>
+    <Stack spacing={10}>
       <GameContext.Provider value={props}>
         {mode === 'morning' && <Morning />}
 

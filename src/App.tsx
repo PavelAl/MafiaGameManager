@@ -25,8 +25,8 @@ const initial: InitialContextValue = {
 
 export function App() {
   const contextValue = useCreateAppContextValue(initial);
-
   const { players, participants, settings, rolesRegistration, gameState } = contextValue;
+  console.log(initial.initialRolesRegistration);
 
   useEffect(() => {
     localStorage.setItem('players', JSON.stringify(players));
