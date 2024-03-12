@@ -1,6 +1,6 @@
 import { EliminatedRecord } from '~/Game/types';
 
-import { getAllEliminated } from './tools';
+import { getAllEliminated } from './getAllEliminated';
 
 export function getCurrentPlayers(args: {
   daysRecords: EliminatedRecord;

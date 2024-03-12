@@ -11,7 +11,6 @@ export const Toolbar: FC = () => {
       isFirstDay={mode === 'day' && currentDay === 1}
       onGoNext={goNextStage}
       onGoPrev={goPreviousStage}
-      onFinish={() => alert('finish')}
     />
   );
 };

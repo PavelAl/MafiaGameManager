@@ -5,11 +5,10 @@ interface ToolbarProps {
   isFirstDay?: boolean;
   onGoNext?: () => void;
   onGoPrev?: () => void;
-  onFinish?: () => void;
 }
 
 export const GameModuleToolbar: FC<ToolbarProps> = props => {
-  const { isFirstDay, onGoNext, onGoPrev, onFinish } = props;
+  const { isFirstDay, onGoNext, onGoPrev } = props;
 
   return (
     <HStack justifyContent={'space-between'} width={'100%'}>
@@ -20,10 +19,6 @@ export const GameModuleToolbar: FC<ToolbarProps> = props => {
           Назад
         </Button>
       )}
-
-      <Button colorScheme={'blue'} onClick={onFinish}>
-        Закончить
-      </Button>
 
       <Button colorScheme={'blue'} onClick={onGoNext}>
         Вперед

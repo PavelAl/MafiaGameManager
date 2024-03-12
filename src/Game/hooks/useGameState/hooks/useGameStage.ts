@@ -1,10 +1,11 @@
-import { useState } from 'react';
-
 import { GameMode } from '../../../types';
 
+import { useStateWithCache } from '~/Common';
+import { localGameStateStorageKeys } from '~/Game/storage';
+
 export const useGameStage = () => {
-  const [currentDay, setCurrentDay] = useState(1);
-  const [mode, setMode] = useState<GameMode>('day');
+  const [currentDay, setCurrentDay] = useStateWithCache(1, localGameStateStorageKeys.currentDay);
+  const [mode, setMode] = useStateWithCache<GameMode>('day', localGameStateStorageKeys.gameMode);
 
   const goNextStage = () => {
     if (mode === 'morning') setMode('day');

@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { NightRecord } from '../../../types';
 
+import { useStateWithCache } from '~/Common';
+import { localGameStateStorageKeys } from '~/Game/storage';
 import { GameSettings } from '~/GameSetup';
 import { gameSettingsToRegistrationOptions } from '~/RoleRegistration/tools';
 import { RoleRegistrationOption } from '~/RoleRegistration/types';
@@ -15,15 +17,18 @@ type Args = {
 export const useNightsRecords = (args: Args) => {
   const { currentDay, currentPlayers, settings } = args;
 
-  const [nightsRecords, setNightsRecords] = useState<Record<number, NightRecord>>({
-    1: {
-      results: gameSettingsToRegistrationOptions({
-        ...settings,
-        players: currentPlayers.length,
-        mafia: 1
-      })
-    }
-  });
+  const [nightsRecords, setNightsRecords] = useStateWithCache<Record<number, NightRecord>>(
+    {
+      1: {
+        results: gameSettingsToRegistrationOptions({
+          ...settings,
+          players: currentPlayers.length,
+          mafia: 1
+        })
+      }
+    },
+    localGameStateStorageKeys.night
+  );
 
   const nightActions = nightsRecords[currentDay]?.results ?? [];
 

@@ -4,9 +4,12 @@ import { GameSettings } from '~/GameSetup';
 import { gameSettingsToRegistrationOptions } from '~/RoleRegistration/tools';
 import { RoleRegistrationOption } from '~/RoleRegistration/types';
 
-export const useRolesRegistration = (settings: GameSettings) => {
+export const useRolesRegistration = (
+  settings: GameSettings,
+  initial?: RoleRegistrationOption[]
+) => {
   const [rolesRegistration, setRolesRegistration] = useState<RoleRegistrationOption[]>(
-    gameSettingsToRegistrationOptions(settings)
+    initial ?? gameSettingsToRegistrationOptions(settings)
   );
 
   useEffect(() => {

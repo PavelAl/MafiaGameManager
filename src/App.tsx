@@ -1,8 +1,9 @@
 import { Box } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { appPaths } from './App/appPaths';
-import { AppContext, useCreateAppContextValue } from './App/context';
+import { AppContext, InitialContextValue, useCreateAppContextValue } from './App/context';
 import {
   GameSettings,
   MainMenu,
@@ -15,8 +16,25 @@ import {
 
 import './App.css';
 
+const initial: InitialContextValue = {
+  initialPlayers: JSON.parse(localStorage.getItem('players') ?? ''),
+  initialParticipants: JSON.parse(localStorage.getItem('participants') ?? ''),
+  initialSettings: JSON.parse(localStorage.getItem('settings') ?? ''),
+  initialRolesRegistration: JSON.parse(localStorage.getItem('rolesRegistration') ?? '')
+};
+
 export function App() {
-  const contextValue = useCreateAppContextValue();
+  const contextValue = useCreateAppContextValue(initial);
+
+  const { players, participants, settings, rolesRegistration, gameState } = contextValue;
+
+  useEffect(() => {
+    localStorage.setItem('players', JSON.stringify(players));
+    localStorage.setItem('participants', JSON.stringify(participants));
+    localStorage.setItem('settings', JSON.stringify(settings));
+    localStorage.setItem('rolesRegistration', JSON.stringify(rolesRegistration));
+    localStorage.setItem('gameState', JSON.stringify(gameState));
+  }, [players, participants, settings, rolesRegistration, gameState]);
 
   return (
     <Box padding={'20px 0'} maxWidth={430} margin={'auto'}>

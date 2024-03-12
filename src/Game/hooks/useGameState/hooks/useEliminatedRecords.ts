@@ -1,11 +1,14 @@
-import { useState } from 'react';
-
 import { DayRecord, EliminatedState } from '../../../types';
 
-export const useEliminatedRecords = (currentDay: number): EliminatedState => {
-  const [eliminatedRecords, setDaysRecords] = useState<Record<number, DayRecord>>({
-    1: { eliminated: [] }
-  });
+import { useStateWithCache } from '~/Common';
+
+export const useEliminatedRecords = (currentDay: number, key: string): EliminatedState => {
+  const [eliminatedRecords, setDaysRecords] = useStateWithCache<Record<number, DayRecord>>(
+    {
+      1: { eliminated: [] }
+    },
+    key
+  );
 
   const todayEliminated = eliminatedRecords[currentDay]?.eliminated ?? [];
 

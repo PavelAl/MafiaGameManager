@@ -1,11 +1,13 @@
-import { HStack, IconButton, Select, Text } from '@chakra-ui/react';
+import { HStack, IconButton, Text } from '@chakra-ui/react';
 import { Clear } from '@mui/icons-material';
 import { FC } from 'react';
+
+import { Select } from '~/Common';
 
 import { RoleRegistrationInputProps } from './RoleRegistrationInput.types';
 
 export const RoleRegistrationInput: FC<RoleRegistrationInputProps> = props => {
-  const { label, selectedPlayer, players, onPlayerSelected } = props;
+  const { label, selectedPlayer = '', players, onPlayerSelected } = props;
 
   return (
     <HStack spacing={4}>
@@ -14,21 +16,11 @@ export const RoleRegistrationInput: FC<RoleRegistrationInputProps> = props => {
       </Text>
 
       <Select
-        defaultValue={''}
-        value={selectedPlayer}
-        size="sm"
-        onChange={e => onPlayerSelected(e.target.value)}
-      >
-        <option value="" disabled hidden>
-          {'Выберите игрока'}
-        </option>
-
-        {players.map(player => (
-          <option key={player} value={player}>
-            {player}
-          </option>
-        ))}
-      </Select>
+        placeholder="Выберите игрока"
+        selectedKey={selectedPlayer}
+        options={players.map(player => ({ key: player, label: player }))}
+        onOptionSelected={onPlayerSelected}
+      />
 
       <IconButton
         variant="link"

@@ -1,3 +1,4 @@
+import { localGameStateStorageKeys } from '~/Game/storage';
 import { GameState } from '~/Game/types';
 import { GameSettings } from '~/GameSetup';
 
@@ -14,10 +15,10 @@ export const useGameState = (args: Args): GameState => {
 
   const { currentDay, mode, goNextStage, goPreviousStage } = useGameStage();
 
-  const day = useEliminatedRecords(currentDay);
+  const day = useEliminatedRecords(currentDay, localGameStateStorageKeys.dayRecords);
   const { eliminatedRecords: daysRecords } = day;
 
-  const morning = useEliminatedRecords(currentDay);
+  const morning = useEliminatedRecords(currentDay, localGameStateStorageKeys.morningRecords);
   const { eliminatedRecords: morningRecords } = morning;
 
   const currentPlayers = getCurrentPlayers({ daysRecords, morningRecords, participants });
