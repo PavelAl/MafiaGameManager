@@ -5,6 +5,7 @@ import { useAppContext } from '../../context';
 
 import { appPaths } from '~/App/appPaths';
 import { LinkButton } from '~/Common';
+import { resetGameStorage } from '~/Game/storage';
 
 export const MainMenu: FC = () => {
   const { participants } = useAppContext();
@@ -17,7 +18,7 @@ export const MainMenu: FC = () => {
 
       <LinkButton to={appPaths.settings} label={`Настройки ролей`} />
 
-      <LinkButton to={appPaths.cardsDealing} label={'Начать игру'} />
+      <LinkButton to={appPaths.cardsDealing} label={'Начать игру'} onClick={resetGameStorage} />
     </Stack>
   );
 };

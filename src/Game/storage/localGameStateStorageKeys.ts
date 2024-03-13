@@ -3,5 +3,6 @@ export const localGameStateStorageKeys = {
   morningRecords: 'morning',
   night: 'night',
   currentDay: 'currentDay',
-  gameMode: 'gameMode'
+  gameMode: 'gameMode',
+  rolesRegistration: 'rolesRegistration'
 };

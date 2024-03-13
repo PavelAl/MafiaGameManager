@@ -27,10 +27,8 @@ export const useCreateAppContextValue = (args: InitialContextValue): AppContextV
 
   const { settings, setSettings } = useSettings(participants, initialSettings);
 
-  const { rolesRegistration, updateRoleRegistration } = useRolesRegistration(
-    settings,
-    initialRolesRegistration
-  );
+  const { rolesRegistration, updateRoleRegistration, resetRolesRegistration } =
+    useRolesRegistration(settings, initialRolesRegistration);
 
   const gameState = useGameState({ settings, participants });
 
@@ -39,8 +37,12 @@ export const useCreateAppContextValue = (args: InitialContextValue): AppContextV
     localStorage.setItem('participants', JSON.stringify(participants));
     localStorage.setItem('settings', JSON.stringify(settings));
     localStorage.setItem('rolesRegistration', JSON.stringify(rolesRegistration));
-    localStorage.setItem('gameState', JSON.stringify(gameState));
   }, [players, participants, settings, rolesRegistration, gameState]);
+
+  const startNewGame = () => {
+    resetRolesRegistration();
+    gameState.resetGameState?.();
+  };
 
   return {
     players,
@@ -53,6 +55,7 @@ export const useCreateAppContextValue = (args: InitialContextValue): AppContextV
     setParticipants,
     addParticipant,
     removeParticipant,
-    updateRoleRegistration
+    updateRoleRegistration,
+    startNewGame
   };
 };

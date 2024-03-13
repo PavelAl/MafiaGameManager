@@ -4,4 +4,5 @@ export * from './GameSettings';
 export * from './MainMenu';
 export * from './ParticipantsPage';
 export * from './PlayersPage';
+export * from './ResultsPage';
 export * from './RolesRegistrationPage';

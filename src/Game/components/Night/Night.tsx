@@ -17,6 +17,7 @@ export const Night: FC<NightProps> = props => {
       <RoleRegistration
         options={options}
         players={players}
+        uniqueSelections={false}
         onOptionPlayerSelected={onOptionPlayerSelected}
       />
     </Stack>

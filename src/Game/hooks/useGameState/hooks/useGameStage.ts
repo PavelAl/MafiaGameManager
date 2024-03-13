@@ -25,5 +25,10 @@ export const useGameStage = () => {
     if (mode === 'night') setMode('day');
   };
 
-  return { currentDay, mode, goNextStage, goPreviousStage };
+  const resetGameStage = () => {
+    setCurrentDay(1);
+    setMode('day');
+  };
+
+  return { currentDay, mode, goNextStage, goPreviousStage, resetGameStage };
 };

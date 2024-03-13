@@ -3,10 +3,8 @@ import { DayRecord, EliminatedState } from '../../../types';
 import { useStateWithCache } from '~/Common';
 
 export const useEliminatedRecords = (currentDay: number, key: string): EliminatedState => {
-  const [eliminatedRecords, setDaysRecords] = useStateWithCache<Record<number, DayRecord>>(
-    {
-      1: { eliminated: [] }
-    },
+  const [eliminatedRecords, setRecords] = useStateWithCache<Record<number, DayRecord>>(
+    { 1: { eliminated: [] } },
     key
   );
 
@@ -17,18 +15,23 @@ export const useEliminatedRecords = (currentDay: number, key: string): Eliminate
 
     const newPlayers = [...todayEliminated, name];
 
-    setDaysRecords(prev => ({ ...prev, [currentDay]: { eliminated: newPlayers } }));
+    setRecords(prev => ({ ...prev, [currentDay]: { eliminated: newPlayers } }));
   };
 
   const onRemoveEliminated = (name: string) => {
     const newPlayers = todayEliminated.filter(n => n !== name);
 
-    setDaysRecords(prev => ({ ...prev, [currentDay]: { eliminated: newPlayers } }));
+    setRecords(prev => ({ ...prev, [currentDay]: { eliminated: newPlayers } }));
+  };
+
+  const reset = () => {
+    setRecords({ 1: { eliminated: [] } });
   };
 
   return {
     eliminatedRecords,
     onAddEliminated,
-    onRemoveEliminated
+    onRemoveEliminated,
+    reset
   };
 };

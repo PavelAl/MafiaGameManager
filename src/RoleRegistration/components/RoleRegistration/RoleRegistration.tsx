@@ -6,7 +6,7 @@ import { RoleRegistrationInput } from '../RoleRegistrationInput';
 import { RoleRegistrationProps } from './RoleRegistration.types';
 
 export const RoleRegistration: FC<RoleRegistrationProps> = props => {
-  const { options, players, onOptionPlayerSelected } = props;
+  const { options, players, uniqueSelections = true, onOptionPlayerSelected } = props;
 
   const selectedPlayers = options.map(({ player }) => player);
   const availablePlayers = players.filter(player => !selectedPlayers.includes(player));
@@ -20,7 +20,7 @@ export const RoleRegistration: FC<RoleRegistrationProps> = props => {
           <RoleRegistrationInput
             key={key}
             label={label}
-            players={[player, ...availablePlayers]}
+            players={uniqueSelections ? [player, ...availablePlayers] : players}
             selectedPlayer={player}
             onPlayerSelected={newPlayer =>
               onOptionPlayerSelected?.({ ...option, player: newPlayer })

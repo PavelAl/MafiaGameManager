@@ -5,15 +5,16 @@ import { Link } from 'react-router-dom';
 export type LinkButtonProps = {
   to: string;
   label: string;
+  onClick?: () => void;
 };
 
 export const LinkButton: FC<LinkButtonProps> = props => {
-  const { to, label } = props;
+  const { to, label, onClick } = props;
 
   return (
     <Stack spacing={8} alignItems={'center'}>
-      <Link to={to}>
-        <Button colorScheme="teal" variant="link" size="lg">
+      <Link to={to} onClick={onClick}>
+        <Button colorScheme="teal" variant="link" size="lg" onClick={onClick}>
           {label}
         </Button>
       </Link>

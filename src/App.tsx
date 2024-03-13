@@ -11,29 +11,33 @@ import {
   PlayersPage,
   CardsDealingPage,
   RolesRegistrationPage,
-  GamePage
+  GamePage,
+  ResultsPage
 } from './App/pages';
-
-import './App.css';
+import { localGameStateStorageKeys } from './Game/storage';
 
 const initial: InitialContextValue = {
-  initialPlayers: JSON.parse(localStorage.getItem('players') ?? ''),
-  initialParticipants: JSON.parse(localStorage.getItem('participants') ?? ''),
-  initialSettings: JSON.parse(localStorage.getItem('settings') ?? ''),
-  initialRolesRegistration: JSON.parse(localStorage.getItem('rolesRegistration') ?? '')
+  initialPlayers: JSON.parse(localStorage.getItem('players') ?? '[]'),
+  initialParticipants: JSON.parse(localStorage.getItem('participants') ?? '[]'),
+  initialSettings: JSON.parse(localStorage.getItem('settings') ?? '{}'),
+  initialRolesRegistration: JSON.parse(
+    localStorage.getItem(localGameStateStorageKeys.rolesRegistration) ?? '[]'
+  )
 };
 
 export function App() {
   const contextValue = useCreateAppContextValue(initial);
+
   const { players, participants, settings, rolesRegistration, gameState } = contextValue;
-  console.log(initial.initialRolesRegistration);
 
   useEffect(() => {
     localStorage.setItem('players', JSON.stringify(players));
     localStorage.setItem('participants', JSON.stringify(participants));
     localStorage.setItem('settings', JSON.stringify(settings));
-    localStorage.setItem('rolesRegistration', JSON.stringify(rolesRegistration));
-    localStorage.setItem('gameState', JSON.stringify(gameState));
+    localStorage.setItem(
+      localGameStateStorageKeys.rolesRegistration,
+      JSON.stringify(rolesRegistration)
+    );
   }, [players, participants, settings, rolesRegistration, gameState]);
 
   return (
@@ -56,6 +60,8 @@ export function App() {
           <Route path={appPaths.rolesRegistration} element={<RolesRegistrationPage />} />
 
           <Route path={appPaths.game} element={<GamePage />} />
+
+          <Route path={appPaths.results} element={<ResultsPage />} />
         </Routes>
       </AppContext.Provider>
     </Box>

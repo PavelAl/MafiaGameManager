@@ -24,5 +24,9 @@ export const useRolesRegistration = (
     );
   };
 
-  return { rolesRegistration, updateRoleRegistration };
+  const resetRolesRegistration = () => {
+    setRolesRegistration(gameSettingsToRegistrationOptions(settings));
+  };
+
+  return { rolesRegistration, updateRoleRegistration, resetRolesRegistration };
 };

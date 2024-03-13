@@ -24,7 +24,7 @@ export const GamePageToolbar: FC<ToolbarProps> = props => {
         <div style={{ width: 64 }} />
       )}
 
-      <LinkButton to={appPaths.game} label="Подвести итоги" />
+      <LinkButton to={appPaths.results} label="Подвести итоги" />
 
       {pageMode === 'game' ? (
         <IconButton aria-label="Roles" icon={<Groups />} onClick={onSeeRoles} />

@@ -19,4 +19,6 @@ export type AppContextValue = {
   removeParticipant?: (players: string) => void;
 
   updateRoleRegistration?: (updatedOption: RoleRegistrationOption) => void;
+
+  startNewGame?: () => void;
 };

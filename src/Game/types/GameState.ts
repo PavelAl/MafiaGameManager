@@ -12,4 +12,5 @@ export type GameState = {
   updateNightAction?: (option: RoleRegistrationOption) => void;
   goNextStage?: () => void;
   goPreviousStage?: () => void;
+  resetGameState?: () => void;
 };

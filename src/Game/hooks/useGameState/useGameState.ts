@@ -13,21 +13,28 @@ type Args = {
 export const useGameState = (args: Args): GameState => {
   const { settings, participants = [] } = args;
 
-  const { currentDay, mode, goNextStage, goPreviousStage } = useGameStage();
+  const { currentDay, mode, goNextStage, goPreviousStage, resetGameStage } = useGameStage();
 
   const day = useEliminatedRecords(currentDay, localGameStateStorageKeys.dayRecords);
-  const { eliminatedRecords: daysRecords } = day;
+  const { eliminatedRecords: daysRecords, reset: resetDay } = day;
 
   const morning = useEliminatedRecords(currentDay, localGameStateStorageKeys.morningRecords);
-  const { eliminatedRecords: morningRecords } = morning;
+  const { eliminatedRecords: morningRecords, reset: resetMorning } = morning;
 
   const currentPlayers = getCurrentPlayers({ daysRecords, morningRecords, participants });
 
-  const { nightActions, updateNightAction } = useNightsRecords({
+  const { nightActions, updateNightAction, resetNight } = useNightsRecords({
     currentDay,
     currentPlayers,
     settings
   });
+
+  const resetGameState = () => {
+    resetGameStage();
+    resetDay();
+    resetMorning();
+    resetNight();
+  };
 
   return {
     mode,
@@ -38,6 +45,7 @@ export const useGameState = (args: Args): GameState => {
     nightActions,
     goNextStage,
     goPreviousStage,
-    updateNightAction
+    updateNightAction,
+    resetGameState
   };
 };

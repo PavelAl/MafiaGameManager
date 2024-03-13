@@ -6,4 +6,5 @@ export type EliminatedState = {
   eliminatedRecords: EliminatedRecord;
   onAddEliminated: (name: string) => void;
   onRemoveEliminated: (name: string) => void;
+  reset: () => void;
 };

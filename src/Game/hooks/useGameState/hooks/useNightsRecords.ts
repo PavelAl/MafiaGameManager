@@ -15,18 +15,10 @@ type Args = {
 };
 
 export const useNightsRecords = (args: Args) => {
-  const { currentDay, currentPlayers, settings } = args;
+  const { currentDay, settings } = args;
 
   const [nightsRecords, setNightsRecords] = useStateWithCache<Record<number, NightRecord>>(
-    {
-      1: {
-        results: gameSettingsToRegistrationOptions({
-          ...settings,
-          players: currentPlayers.length,
-          mafia: 1
-        })
-      }
-    },
+    createNewDayRecord(1, settings),
     localGameStateStorageKeys.night
   );
 
@@ -36,18 +28,13 @@ export const useNightsRecords = (args: Args) => {
     setNightsRecords(prev => {
       if (prev[currentDay]) return prev;
 
-      return {
-        ...prev,
-        [currentDay]: {
-          results: gameSettingsToRegistrationOptions({
-            ...settings,
-            players: currentPlayers.length,
-            mafia: 1
-          })
-        }
-      };
+      return { ...prev, ...createNewDayRecord(currentDay, settings) };
     });
-  }, [settings, currentDay]);
+  }, [currentDay]);
+
+  useEffect(() => {
+    setNightsRecords(createNewDayRecord(1, settings));
+  }, [settings]);
 
   const updateNightAction = (updatedOption: RoleRegistrationOption): void => {
     setNightsRecords(prevState => {
@@ -63,5 +50,24 @@ export const useNightsRecords = (args: Args) => {
     });
   };
 
-  return { nightsRecords, nightActions, updateNightAction };
+  const resetNight = () => {
+    setNightsRecords(createNewDayRecord(1, settings));
+  };
+
+  return { nightsRecords, nightActions, updateNightAction, resetNight };
 };
+
+function createNewDayRecord(
+  dayOrder: number,
+  settings?: GameSettings
+): Record<number, NightRecord> {
+  return {
+    [dayOrder]: {
+      results: gameSettingsToRegistrationOptions({
+        ...settings,
+        players: 0,
+        mafia: 1
+      })
+    }
+  };
+}
