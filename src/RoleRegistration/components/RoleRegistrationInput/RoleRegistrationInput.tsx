@@ -11,7 +11,7 @@ export const RoleRegistrationInput: FC<RoleRegistrationInputProps> = props => {
 
   return (
     <HStack spacing={4}>
-      <Text fontSize="16" fontWeight={600} width={`100px`}>
+      <Text fontSize="16" fontWeight={600} width={`130px`}>
         {label}
       </Text>
 

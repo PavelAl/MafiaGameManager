@@ -12,6 +12,7 @@ export const winnerOptions: SelectOption[] = [
   { key: 'maniac', label: 'Маньяк' },
   { key: 'widow', label: 'Вдова' },
   { key: 'psycho', label: 'Псих' },
+  { key: 'hypno', label: 'Гипнотизер' },
   { key: 'city-widow', label: 'Город, вдова' },
   { key: 'city-psycho', label: 'Город, псих' },
   { key: 'city-psycho-widow', label: 'Город, псих, вдова' }

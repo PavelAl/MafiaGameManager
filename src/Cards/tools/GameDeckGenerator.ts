@@ -2,9 +2,9 @@ import { cardsPool } from '../data';
 import { Card, CardsPool } from '../types';
 
 import { shuffleArray } from '~/Common/tools';
-import { GameSettings } from '~/GameSetup/types';
+import { GameSettings, Role, soloRoles } from '~/GameSetup/types';
 
-import { checkThatMafiaSitsToClose } from './statistics/qualityCheck';
+import { checkThatCitizensSitsToClose, checkThatMafiaSitsToClose } from './statistics/qualityCheck';
 
 export class GameDeckGenerator {
   private deck: Card[] = [];
@@ -15,11 +15,11 @@ export class GameDeckGenerator {
     this.deck = [];
 
     this.addMafia();
-    this.addSherif();
-    this.addBoss();
-    this.addManiac();
-    this.addPutana();
-    this.addDoctor();
+
+    for (const role of soloRoles) {
+      this.addRole(role);
+    }
+
     this.fillRestWithCitizens();
 
     return this.shuffleDeck();
@@ -36,9 +36,11 @@ export class GameDeckGenerator {
       result = shuffleArray(result);
     }
 
-    const allMafiaSitTogether = checkThatMafiaSitsToClose(result, this.gameSettings);
+    const shouldReshuffle =
+      checkThatMafiaSitsToClose(result, this.gameSettings) ||
+      checkThatCitizensSitsToClose(result, this.gameSettings);
 
-    if (allMafiaSitTogether) {
+    if (shouldReshuffle) {
       this.deck = result;
 
       return this.shuffleDeck(tryToShuffle + 1);
@@ -53,33 +55,9 @@ export class GameDeckGenerator {
     }
   }
 
-  private addSherif() {
-    if (this.gameSettings.sheriff) {
-      this.addRoleToDeck('sheriff');
-    }
-  }
-
-  private addBoss() {
-    if (this.gameSettings.boss) {
-      this.addRoleToDeck('boss');
-    }
-  }
-
-  private addManiac() {
-    if (this.gameSettings.maniac) {
-      this.addRoleToDeck('maniac');
-    }
-  }
-
-  private addPutana() {
-    if (this.gameSettings.putana) {
-      this.addRoleToDeck('putana');
-    }
-  }
-
-  private addDoctor() {
-    if (this.gameSettings.doctor) {
-      this.addRoleToDeck('doctor');
+  private addRole(role: Role) {
+    if (role !== 'citizen' && this.gameSettings[role]) {
+      this.addRoleToDeck(role);
     }
   }
 

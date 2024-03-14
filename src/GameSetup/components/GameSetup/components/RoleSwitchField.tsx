@@ -14,7 +14,7 @@ export const RoleSwitchField: FC<{ role: Role }> = ({ role }) => {
   return (
     <SwitchField
       id={role}
-      label={card.name}
+      label={card.nameRu}
       checked={Boolean(settings[role as keyof GameSettings])}
       onChange={value => onChange?.({ ...settings, [role]: value })}
     />

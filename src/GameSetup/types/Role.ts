@@ -1,14 +1,35 @@
-export type Role = 'citizen' | 'mafia' | 'sheriff' | 'boss' | 'maniac' | 'putana' | 'doctor';
-
-export const rolesList: Role[] = [
-  'citizen',
-  'mafia',
+export const soloRoles: Role[] = [
   'sheriff',
   'boss',
   'maniac',
   'putana',
-  'doctor'
+  'doctor',
+  'widow',
+  'psycho',
+  'advocate',
+  'luckyGuy',
+  'journalist',
+  'detective',
+  'amur',
+  'hypnotizer'
 ];
+
+export type Role =
+  | 'citizen'
+  | 'mafia'
+  | 'sheriff'
+  | 'boss'
+  | 'maniac'
+  | 'putana'
+  | 'doctor'
+  | 'widow'
+  | 'psycho'
+  | 'advocate'
+  | 'luckyGuy'
+  | 'journalist'
+  | 'detective'
+  | 'amur'
+  | 'hypnotizer';
 
 export type RoleDescription = {
   role: Role;
