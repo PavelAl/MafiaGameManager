@@ -28,7 +28,7 @@ const initial: InitialContextValue = {
 export function App() {
   const contextValue = useCreateAppContextValue(initial);
 
-  const { players, participants, settings, rolesRegistration, gameState } = contextValue;
+  const { players, participants, settings, rolesRegistrations, gameState } = contextValue;
 
   useEffect(() => {
     localStorage.setItem('players', JSON.stringify(players));
@@ -36,9 +36,9 @@ export function App() {
     localStorage.setItem('settings', JSON.stringify(settings));
     localStorage.setItem(
       localGameStateStorageKeys.rolesRegistration,
-      JSON.stringify(rolesRegistration)
+      JSON.stringify(rolesRegistrations)
     );
-  }, [players, participants, settings, rolesRegistration, gameState]);
+  }, [players, participants, settings, rolesRegistrations, gameState]);
 
   return (
     <Box padding={'20px 0'} maxWidth={430} margin={'auto'}>

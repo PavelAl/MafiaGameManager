@@ -20,7 +20,15 @@ export function simulateNumberOfGames(gameSettings: GameSettings, numberOfGames:
       boss: 0,
       doctor: 0,
       maniac: 0,
-      putana: 0
+      putana: 0,
+      widow: 0,
+      psycho: 0,
+      advocate: 0,
+      luckyGuy: 0,
+      journalist: 0,
+      detective: 0,
+      amur: 0,
+      hypnotizer: 0
     };
 
     for (const deck of decks) {

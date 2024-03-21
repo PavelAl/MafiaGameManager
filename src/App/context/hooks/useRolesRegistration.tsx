@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import { GameSettings } from '~/GameSetup';
-import { gameSettingsToRegistrationOptions } from '~/RoleRegistration/tools';
+import {
+  gameSettingsToRegistrationOptions,
+  mergeRolesRegistrations
+} from '~/RoleRegistration/tools';
 import { RoleRegistrationOption } from '~/RoleRegistration/types';
 
 export const useRolesRegistration = (
@@ -13,8 +16,12 @@ export const useRolesRegistration = (
   );
 
   useEffect(() => {
-    setRolesRegistration(gameSettingsToRegistrationOptions(settings));
-  }, [settings]);
+    const clearRegistration = gameSettingsToRegistrationOptions(settings);
+
+    setRolesRegistration(
+      initial ? mergeRolesRegistrations(clearRegistration, initial) : clearRegistration
+    );
+  }, [settings, initial]);
 
   const updateRoleRegistration = (updatedOption: RoleRegistrationOption): void => {
     setRolesRegistration(prevState =>

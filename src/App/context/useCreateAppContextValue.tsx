@@ -27,17 +27,20 @@ export const useCreateAppContextValue = (args: InitialContextValue): AppContextV
 
   const { settings, setSettings } = useSettings(participants, initialSettings);
 
-  const { rolesRegistration, updateRoleRegistration, resetRolesRegistration } =
-    useRolesRegistration(settings, initialRolesRegistration);
+  const {
+    rolesRegistration: rolesRegistrations,
+    updateRoleRegistration,
+    resetRolesRegistration
+  } = useRolesRegistration(settings, initialRolesRegistration);
 
-  const gameState = useGameState({ settings, participants });
+  const gameState = useGameState({ settings, participants, rolesRegistration: rolesRegistrations });
 
   useEffect(() => {
     localStorage.setItem('players', JSON.stringify(players));
     localStorage.setItem('participants', JSON.stringify(participants));
     localStorage.setItem('settings', JSON.stringify(settings));
-    localStorage.setItem('rolesRegistration', JSON.stringify(rolesRegistration));
-  }, [players, participants, settings, rolesRegistration, gameState]);
+    localStorage.setItem('rolesRegistration', JSON.stringify(rolesRegistrations));
+  }, [players, participants, settings, rolesRegistrations, gameState]);
 
   const startNewGame = () => {
     resetRolesRegistration();
@@ -48,7 +51,7 @@ export const useCreateAppContextValue = (args: InitialContextValue): AppContextV
     players,
     participants,
     settings,
-    rolesRegistration,
+    rolesRegistrations,
     gameState,
     setSettings,
     setPlayers,

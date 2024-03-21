@@ -7,7 +7,7 @@ export type AppContextValue = {
   participants?: string[];
 
   settings?: GameSettings;
-  rolesRegistration?: RoleRegistrationOption[];
+  rolesRegistrations?: RoleRegistrationOption[];
 
   gameState?: GameState;
 

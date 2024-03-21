@@ -13,7 +13,7 @@ export const GamePage: FC = () => {
   const {
     gameState,
     participants = [],
-    rolesRegistration = [],
+    rolesRegistrations = [],
     updateRoleRegistration
   } = useAppContext();
 
@@ -29,13 +29,15 @@ export const GamePage: FC = () => {
 
       {pageMode === 'roles' && (
         <RoleRegistration
-          options={rolesRegistration}
+          options={rolesRegistrations}
           players={participants}
           onOptionPlayerSelected={updateRoleRegistration}
         />
       )}
 
-      {pageMode === 'game' && gameState && <GameModule {...gameState} />}
+      {pageMode === 'game' && gameState && (
+        <GameModule {...gameState} rolesRegistrations={rolesRegistrations} />
+      )}
     </Stack>
   );
 };

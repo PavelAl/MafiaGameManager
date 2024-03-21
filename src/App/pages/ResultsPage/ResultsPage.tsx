@@ -9,7 +9,7 @@ import { ResultsModule } from '~/Game/modules/ResultsModule';
 import { resetGameStorage } from '~/Game/storage';
 
 export const ResultsPage: FC = () => {
-  const { participants, rolesRegistration, startNewGame } = useAppContext();
+  const { participants, rolesRegistrations, startNewGame } = useAppContext();
 
   const onStartNewGame = () => {
     startNewGame?.();
@@ -20,7 +20,7 @@ export const ResultsPage: FC = () => {
     <Stack spacing={8} alignItems={'center'}>
       <LinkButton to={appPaths.root} label={'Новая игра'} onClick={onStartNewGame} />
 
-      <ResultsModule participants={participants} rolesRegistration={rolesRegistration} />
+      <ResultsModule participants={participants} rolesRegistration={rolesRegistrations} />
     </Stack>
   );
 };

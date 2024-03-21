@@ -1,17 +1,19 @@
 import { localGameStateStorageKeys } from '~/Game/storage';
 import { GameState } from '~/Game/types';
 import { GameSettings } from '~/GameSetup';
+import { RoleRegistrationOption } from '~/RoleRegistration/types';
 
 import { useEliminatedRecords, useNightsRecords, useGameStage } from './hooks';
-import { getCurrentPlayers } from './tools';
+import { getCurrentPlayers, getCurrentPlayersWithRoles } from './tools';
 
 type Args = {
   participants?: string[];
   settings?: GameSettings;
+  rolesRegistration?: RoleRegistrationOption[];
 };
 
 export const useGameState = (args: Args): GameState => {
-  const { settings, participants = [] } = args;
+  const { settings, participants = [], rolesRegistration = [] } = args;
 
   const { currentDay, mode, goNextStage, goPreviousStage, resetGameStage } = useGameStage();
 
@@ -21,7 +23,11 @@ export const useGameState = (args: Args): GameState => {
   const morning = useEliminatedRecords(currentDay, localGameStateStorageKeys.morningRecords);
   const { eliminatedRecords: morningRecords, reset: resetMorning } = morning;
 
-  const currentPlayers = getCurrentPlayers({ daysRecords, morningRecords, participants });
+  const currentPlayers = getCurrentPlayers({
+    daysRecords,
+    morningRecords,
+    participants
+  });
 
   const { nightActions, updateNightAction, resetNight } = useNightsRecords({
     currentDay,

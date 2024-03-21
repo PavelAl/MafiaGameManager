@@ -8,12 +8,12 @@ import { LinkButton } from '~/Common';
 import { RoleRegistration } from '~/RoleRegistration/components';
 
 export const RolesRegistrationPage: FC = () => {
-  const { participants = [], rolesRegistration = [], updateRoleRegistration } = useAppContext();
+  const { participants = [], rolesRegistrations = [], updateRoleRegistration } = useAppContext();
 
   return (
     <Stack spacing={6}>
       <RoleRegistration
-        options={rolesRegistration}
+        options={rolesRegistrations}
         players={participants}
         onOptionPlayerSelected={updateRoleRegistration}
       />

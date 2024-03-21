@@ -1,6 +1,6 @@
 import { Role, RoleDescription } from '~/GameSetup/types';
 
-export const rolesDescriptions: Record<Role, RoleDescription> = {
+export const rolesDescriptions: Partial<Record<Role, RoleDescription>> = {
   citizen: {
     role: 'citizen',
     name: 'Мирный',

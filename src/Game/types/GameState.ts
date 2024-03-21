@@ -6,6 +6,7 @@ export type GameState = {
   mode: GameMode;
   currentDay: number;
   currentPlayers: string[];
+  rolesRegistrations: RoleRegistrationOption[];
   morning: EliminatedState;
   day: EliminatedState;
   nightActions: RoleRegistrationOption[];
