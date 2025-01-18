@@ -4,16 +4,16 @@ import { GameSettings } from '~/GameSetup';
 import { RoleRegistrationOption } from '~/RoleRegistration/types';
 
 import { useEliminatedRecords, useNightsRecords, useGameStage } from './hooks';
-import { getCurrentPlayers, getCurrentPlayersWithRoles } from './tools';
+import { getCurrentPlayers } from './tools';
 
 type Args = {
   participants?: string[];
   settings?: GameSettings;
-  rolesRegistration?: RoleRegistrationOption[];
+  rolesRegistrations?: RoleRegistrationOption[];
 };
 
 export const useGameState = (args: Args): GameState => {
-  const { settings, participants = [], rolesRegistration = [] } = args;
+  const { settings, participants = [], rolesRegistrations = [] } = args;
 
   const { currentDay, mode, goNextStage, goPreviousStage, resetGameStage } = useGameStage();
 
@@ -49,6 +49,7 @@ export const useGameState = (args: Args): GameState => {
     day,
     morning,
     nightActions,
+    rolesRegistrations,
     goNextStage,
     goPreviousStage,
     updateNightAction,

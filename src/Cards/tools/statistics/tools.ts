@@ -28,7 +28,12 @@ export function simulateNumberOfGames(gameSettings: GameSettings, numberOfGames:
       journalist: 0,
       detective: 0,
       amur: 0,
-      hypnotizer: 0
+      hypnotizer: 0,
+      godfather: 0,
+      rat: 0,
+      santa: 0,
+      snitch: 0,
+      thief: 0
     };
 
     for (const deck of decks) {

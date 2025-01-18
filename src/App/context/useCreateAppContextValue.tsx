@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { useGameState } from '~/Game/hooks';
 import { GameSettings } from '~/GameSetup';
@@ -33,7 +33,11 @@ export const useCreateAppContextValue = (args: InitialContextValue): AppContextV
     resetRolesRegistration
   } = useRolesRegistration(settings, initialRolesRegistration);
 
-  const gameState = useGameState({ settings, participants, rolesRegistration: rolesRegistrations });
+  const gameState = useGameState({
+    settings,
+    participants,
+    rolesRegistrations: rolesRegistrations
+  });
 
   useEffect(() => {
     localStorage.setItem('players', JSON.stringify(players));
